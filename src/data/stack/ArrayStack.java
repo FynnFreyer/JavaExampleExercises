@@ -14,6 +14,16 @@ import java.util.EmptyStackException;
  * @param <E> the type of objects on the stack
  */
 public class ArrayStack<E> implements SimpleStack<E> {
+    E[] stack;
+    int pointer;
+
+    @SuppressWarnings("unchecked")
+    public ArrayStack(int size) {
+        // java is a piece of shit
+        this.stack = (E[]) new Object[size];
+        this.pointer = 0;
+    }
+
     /**
      * Push an object onto the stack.
      *
@@ -21,7 +31,15 @@ public class ArrayStack<E> implements SimpleStack<E> {
      */
     @Override
     public void push(E val) {
+        // ++x -> increment first, then do the thing
+        // x++ -> do the thing first, then increment
+        stack[pointer++] = val;
+    }
 
+    private void assertContent(){
+        if (pointer <= 0) {
+            throw new EmptyStackException();
+        }
     }
 
     /**
@@ -32,7 +50,8 @@ public class ArrayStack<E> implements SimpleStack<E> {
      */
     @Override
     public E pop() {
-        return null;
+        assertContent();
+        return stack[pointer--];
     }
 
     /**
@@ -43,6 +62,7 @@ public class ArrayStack<E> implements SimpleStack<E> {
      */
     @Override
     public E peek() {
-        return null;
+        assertContent();
+        return stack[pointer];
     }
 }
