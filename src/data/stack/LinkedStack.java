@@ -7,7 +7,6 @@ import java.util.EmptyStackException;
 /**
  * TODO: Implement a stack that is not backed by an array,
  *       but instead internally keeps links between objects on the stack.
- *       The size should be increased if it gets too small.
  *       Compare with data.list.SingleLinkedList.
  *
  * <p>
