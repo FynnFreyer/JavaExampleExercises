@@ -15,6 +15,8 @@ import java.util.EmptyStackException;
  * @param <E> the type of objects on the stack
  */
 public class LinkedStack<E> implements SimpleStack<E> {
+    Node<E> top;
+
     /**
      * Push an object onto the stack.
      *
@@ -22,7 +24,13 @@ public class LinkedStack<E> implements SimpleStack<E> {
      */
     @Override
     public void push(E val) {
+        top = new Node<>(val, top);
+    }
 
+    private void assertContent() {
+        if (top == null) {
+            throw new EmptyStackException();
+        }
     }
 
     /**
@@ -33,7 +41,10 @@ public class LinkedStack<E> implements SimpleStack<E> {
      */
     @Override
     public E pop() {
-        return null;
+        assertContent();;
+        E val = top.val;
+        top = top.prev;
+        return val;
     }
 
     /**
@@ -44,6 +55,19 @@ public class LinkedStack<E> implements SimpleStack<E> {
      */
     @Override
     public E peek() {
-        return null;
+        return top.val;
+    }
+
+    // Node can be static, because it doesn't need to access anything non-static from the outer class
+    // the notion of a static class only makes sense for classes inside other classes,
+    // because inner classes by default get an implicit reference on the object of the containing class
+    static class Node<E> {
+        E val;
+        Node<E> prev;
+
+        public Node(E val, Node<E> prev) {
+            this.val = val;
+            this.prev = prev;
+        }
     }
 }
