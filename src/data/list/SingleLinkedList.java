@@ -41,7 +41,7 @@ public class SingleLinkedList<E> implements SimpleList<E> {
      * @return whether element is contained in the list
      */
     @Override
-    public boolean contains(Object element) {
+    public boolean contains(E element) {
         return false;
     }
 
@@ -51,7 +51,7 @@ public class SingleLinkedList<E> implements SimpleList<E> {
      * @param element the element to insert
      */
     @Override
-    public void insert(Object element) {
+    public void insert(E element) {
 
     }
 
@@ -63,7 +63,7 @@ public class SingleLinkedList<E> implements SimpleList<E> {
      * @throws IndexOutOfBoundsException if the index is out of bounds
      */
     @Override
-    public void insert(Object element, int index) {
+    public void insert(E element, int index) {
 
     }
 
