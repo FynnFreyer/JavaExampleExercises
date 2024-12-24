@@ -1,5 +1,7 @@
 package absolute_basics;
 
+// exceptions signal that something happened that shouldn't have
+// an exception usually needs to be handled
 public class ExceptionDemo {
 
     public static void main(String[] args) {
@@ -17,13 +19,16 @@ public class ExceptionDemo {
         System.out.printf("divideNoThrows: %f\n", frac);
     }
 
+    // the `throws` indicates that an exception might be thrown
     static double divide(double numerator, double denominator) throws Exception {
         if (denominator == 0) {
+            // use throw to generate an exception
             throw new Exception("Division by zero");
         }
         return numerator / denominator;
     }
 
+    // some exceptions (RuntimeExceptions) do not have to be explicitely declared and handled
     static double divideNoThrows(double numerator, double denominator) {
         if (denominator == 0) {
             throw new ArithmeticException("Division by zero");
